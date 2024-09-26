@@ -30,7 +30,9 @@ function Table({ data, attributes, headings }: propsType) {
   function generateTbodyTr(row: Record<string, any>, parity: boolean) {
     const tds = [];
     for (let header of headings) {
-      tds.push(<td>{row[header.data]}</td>);
+      tds.push(
+        <td>{row[header.data] ? row[header.data] : "Non renseigné"}</td>
+      );
     }
     return (
       <tr role="row" className={parity ? "even" : "odd"}>
