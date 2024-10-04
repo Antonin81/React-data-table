@@ -11,6 +11,19 @@ export interface propsType {
   headings: tableHeading[];
 }
 
+export interface theadPropsType {
+  headings: tableHeading[];
+}
+
+export interface tbodyTrPropsType {
+  row: Record<string, any>;
+  parity: boolean;
+}
+
+export interface tbodyPropsType {
+  data: Record<string, any>[];
+}
+
 export interface tableHeading {
   title: string;
   data: string;
