@@ -43,8 +43,6 @@ function Table({ data, attributes, headings }: propsType) {
     a: Record<string, boolean>,
     b: Record<string, boolean>
   ) {
-    console.log(a, b);
-
     if (a[sort.column!] === b[sort.column!]) {
       return 0;
     } else if (a[sort.column!] && !b[sort.column!]) {
@@ -72,15 +70,11 @@ function Table({ data, attributes, headings }: propsType) {
       const dataToOrder = [...data];
       let orderedData =
         sort.sortType === "ASC"
-          ? dataToOrder.sort(
-              (a: Record<string, any>, b: Record<string, any>) => {
-                return testDataOrder(a, b);
-              }
+          ? dataToOrder.sort((a: Record<string, any>, b: Record<string, any>) =>
+              testDataOrder(a, b)
             )
-          : dataToOrder.sort(
-              (a: Record<string, any>, b: Record<string, any>) => {
-                return testDataOrder(b, a);
-              }
+          : dataToOrder.sort((a: Record<string, any>, b: Record<string, any>) =>
+              testDataOrder(b, a)
             );
       setDataToShow(orderedData);
     }
