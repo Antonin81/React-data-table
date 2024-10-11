@@ -1,4 +1,5 @@
-import { htmlAttributes, tableHeading } from "../common/utils/types";
+import { TableHTMLAttributes } from "react";
+import { tableHeading } from "../common/utils/types";
 import Table from "./components/Table/Table";
 
 function DataTable() {
@@ -58,18 +59,20 @@ function DataTable() {
     { title: "Test booléens", data: "testBoolean" },
   ];
 
-  let attributesTestNothing: htmlAttributes = {
+  let attributesTestNothing: TableHTMLAttributes<any> = {
     id: "table",
-    classes: undefined,
-    ariaDescribedBy: undefined,
+    className: undefined,
+    "aria-describedby": undefined,
     style: undefined,
   };
 
-  let attributesTestAll: htmlAttributes = {
+  let attributesTestAll: TableHTMLAttributes<any> = {
     id: "table-test-all",
-    classes: "table table-2",
-    ariaDescribedBy: "table-desc-text",
-    style: "background-color: #f3f3f3;",
+    className: "data-table",
+    "aria-describedby": "table-desc-text",
+    style: {
+      backgroundColor: "white",
+    },
   };
 
   return (

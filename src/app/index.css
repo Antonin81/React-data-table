@@ -1,3 +1,92 @@
+.data-table thead th {
+  cursor: pointer;
+  user-select: none;
+  padding: 10px 18px;
+  border-bottom: 1px solid #111;
+  line-height: 1;
+  position: relative;
+}
+.data-table thead th::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 50%;
+  right: 9px;
+  transform: translate(50%, calc(100% + 1px));
+  border-top: 9px solid #e5e5e5;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+.data-table thead th::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 9px;
+  --minus-100: -100%;
+  transform: translate(50%, calc(var(--minus-100) - 1px));
+  border-bottom: 9px solid #e5e5e5;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid transparent;
+}
+.data-table thead th.sorting_asc::after {
+  display: none;
+}
+.data-table thead th.sorting_asc::before {
+  border-bottom: 9px solid #7a80dd;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid transparent;
+}
+.data-table thead th.sorting_desc::after {
+  border-top: 9px solid #7a80dd;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+.data-table thead th.sorting_desc::before {
+  display: none;
+}
 
+.data-table {
+  border-collapse: collapse;
+  border-bottom: 1px solid #111;
+}
+
+.data-table tbody {
+  border-bottom: 1px solid #111;
+}
+.data-table tbody td {
+  padding: 8px 10px;
+}
+.data-table tbody tr:not(:first-child) td {
+  border-top: 1px solid #ddd;
+}
+.data-table tbody tr.odd {
+  background-color: #f9f9f9;
+}
+.data-table tbody tr.odd:hover {
+  background-color: #f6f6f6;
+}
+.data-table tbody tr.odd:hover td.sorting_1 {
+  background-color: #eaeaea;
+}
+.data-table tbody tr.odd td.sorting_1 {
+  background-color: #f1f1f1;
+}
+.data-table tbody tr.even {
+  background-color: #ffffff;
+}
+.data-table tbody tr.even:hover {
+  background-color: #f6f6f6;
+}
+.data-table tbody tr.even:hover td.sorting_1 {
+  background-color: #eaeaea;
+}
+.data-table tbody tr.even td.sorting_1 {
+  background-color: #fafafa;
+}
 
 /*# sourceMappingURL=index.css.map */

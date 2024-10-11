@@ -1,0 +1,45 @@
+.data-table thead {
+  th {
+    cursor: pointer;
+    user-select: none;
+    padding: 10px 18px;
+    border-bottom: 1px solid #111;
+    line-height: 1;
+    position: relative;
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 50%;
+      right: 9px;
+      transform: translate(50%, calc(100% + 1px));
+      @include thCarretBorders(#e5e5e5, "bottom");
+    }
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      right: 9px;
+      --minus-100: -100%;
+      transform: translate(50%, calc(var(--minus-100) - 1px));
+      @include thCarretBorders(#e5e5e5, "top");
+    }
+    &.sorting_asc {
+      &::after {
+        display: none;
+      }
+      &::before {
+        @include thCarretBorders(#7a80dd, "top");
+      }
+    }
+    &.sorting_desc {
+      &::after {
+        @include thCarretBorders(#7a80dd, "bottom");
+      }
+      &::before {
+        display: none;
+      }
+    }
+  }
+}
