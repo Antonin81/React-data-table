@@ -1,7 +1,14 @@
 import { tableHeading, theadPropsType } from "../../../common/utils/types";
 
-function Thead({ headings, attributes, sort, setSort }: theadPropsType) {
+function Thead({
+  headings,
+  attributes,
+  sort,
+  setSort,
+  setPaginationStart,
+}: theadPropsType) {
   function theadThClickHandler(heading: tableHeading) {
+    setPaginationStart(0);
     if (sort.column === heading.data) {
       if (sort.sortType === "ASC") {
         setSort({ column: heading.data, sortType: "DESC" });

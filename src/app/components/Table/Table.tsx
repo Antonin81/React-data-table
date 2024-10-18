@@ -4,7 +4,14 @@ import Thead from "../Thead/Thead";
 import Tbody from "../Tbody/Tbody";
 import { testDataOrder } from "../../../common/helpers/functions";
 
-function Table({ data, attributes, headings }: propsType) {
+function Table({
+  data,
+  attributes,
+  headings,
+  paginationLength,
+  paginationStart,
+  setPaginationStart,
+}: propsType) {
   const [sort, setSort] = useState<sortType>({
     column: undefined,
     sortType: undefined,
@@ -36,9 +43,7 @@ function Table({ data, attributes, headings }: propsType) {
       id={attributes.id}
       {...(attributes.className && { className: attributes.className })}
       role="grid"
-      {...(attributes["aria-describedby"] && {
-        "aria-describedby": attributes["aria-describedby"],
-      })}
+      aria-describedby={attributes.id + "_info"}
       {...(attributes.style && {
         style: attributes.style,
       })}
@@ -48,8 +53,15 @@ function Table({ data, attributes, headings }: propsType) {
         attributes={attributes}
         sort={sort}
         setSort={setSort}
+        setPaginationStart={setPaginationStart}
       />
-      <Tbody data={dataToShow} headings={headings} column={sort.column!} />
+      <Tbody
+        data={dataToShow}
+        headings={headings}
+        column={sort.column!}
+        paginationLength={paginationLength}
+        paginationStart={paginationStart}
+      />
     </table>
   );
 }

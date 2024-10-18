@@ -1,86 +1,39 @@
-import { TableHTMLAttributes } from "react";
-import { tableHeading } from "../common/utils/types";
 import Table from "./components/Table/Table";
+import TopSection from "./components/TopSection/TopSection";
+import BottomSection from "./components/BottomSection/BottomSection";
+import {
+  attributesTestAll,
+  dataTest,
+  headings,
+} from "../common/utils/dataTest";
+import { useState } from "react";
 
 function DataTable() {
-  let dataTest: Record<string, any>[] = [
-    {
-      firstName: "yo2",
-      lastName: "yo3",
-      dateOfBirth: "2024-02-01",
-      startDate: "2024-02-04",
-      street: "1 rue du griffoul",
-      city: "lacaune",
-      state: "France",
-      zipCode: "81230",
-      department: "ici",
-      testNumber: 1,
-      testBoolean: true,
-    },
-    {
-      firstName: "yo",
-      lastName: "yo2",
-      dateOfBirth: "2023-02-03",
-      startDate: "2021-02-04",
-      street: "1 rue du gribboul",
-      city: "castres",
-      state: "France",
-      zipCode: "81200",
-      department: "là",
-      testNumber: 3,
-      testBoolean: false,
-    },
-    {
-      firstName: "yo3",
-      lastName: "yo",
-      dateOfBirth: "2024-02-03",
-      startDate: "2026-02-04",
-      street: "2 rue du griffoul",
-      city: "tombouctou",
-      state: "Mali",
-      zipCode: "00000",
-      department: "jsp",
-      testNumber: 2,
-      testBoolean: true,
-    },
-  ];
-
-  let headings: tableHeading[] = [
-    { title: "First Name", data: "firstName" },
-    { title: "Last Name", data: "lastName" },
-    { title: "Start Date", data: "startDate" },
-    { title: "Department", data: "department" },
-    { title: "Date of Birth", data: "dateOfBirth" },
-    { title: "Street", data: "street" },
-    { title: "City", data: "city" },
-    { title: "State", data: "state" },
-    { title: "Zip Code", data: "zipCode" },
-    { title: "Test nombres", data: "testNumber" },
-    { title: "Test booléens", data: "testBoolean" },
-  ];
-
-  let attributesTestNothing: TableHTMLAttributes<any> = {
-    id: "table",
-    className: undefined,
-    "aria-describedby": undefined,
-    style: undefined,
-  };
-
-  let attributesTestAll: TableHTMLAttributes<any> = {
-    id: "table-test-all",
-    className: "data-table",
-    "aria-describedby": "table-desc-text",
-    style: {
-      backgroundColor: "white",
-    },
-  };
+  const [paginationLength, setPaginationLength] = useState<number>(10);
+  const [paginationStart, setPaginationStart] = useState<number>(0);
+  const dataSize = dataTest.length;
 
   return (
-    <div className="all-data-table-container">
+    <div id={attributesTestAll.id! + "_wrapper"} className="dataTables_wrapper">
+      <TopSection
+        id={attributesTestAll.id!}
+        setPaginationLength={setPaginationLength}
+        setPaginationStart={setPaginationStart}
+      />
       <Table
         data={dataTest}
         attributes={attributesTestAll}
         headings={headings}
+        paginationLength={paginationLength}
+        paginationStart={paginationStart}
+        setPaginationStart={setPaginationStart}
+      />
+      <BottomSection
+        id={attributesTestAll.id!}
+        paginationLength={paginationLength}
+        paginationStart={paginationStart}
+        setPaginationStart={setPaginationStart}
+        dataSize={dataSize}
       />
     </div>
   );

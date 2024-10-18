@@ -11,6 +11,9 @@ export interface propsType {
   data: Record<string, any>[];
   attributes: TableHTMLAttributes<any>;
   headings: tableHeading[];
+  paginationLength: number;
+  paginationStart: number;
+  setPaginationStart: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface theadPropsType {
@@ -18,6 +21,7 @@ export interface theadPropsType {
   attributes: TableHTMLAttributes<any>;
   sort: sortType;
   setSort: React.Dispatch<React.SetStateAction<sortType>>;
+  setPaginationStart: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface tbodyTrPropsType {
@@ -31,6 +35,8 @@ export interface tbodyPropsType {
   data: Record<string, any>[];
   headings: tableHeading[];
   column: string;
+  paginationLength: number;
+  paginationStart: number;
 }
 
 export interface tableHeading {
@@ -41,4 +47,47 @@ export interface tableHeading {
 export interface sortType {
   column: string | undefined;
   sortType: "ASC" | "DESC" | undefined;
+}
+
+export interface topSectionPropsType {
+  id: string;
+  setPaginationLength: React.Dispatch<React.SetStateAction<number>>;
+  setPaginationStart: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface entriesSelectPropsType {
+  id: string;
+  setPaginationLength: React.Dispatch<React.SetStateAction<number>>;
+  setPaginationStart: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface bottomSectionPropsType {
+  id: string;
+  paginationLength: number;
+  paginationStart: number;
+  setPaginationStart: React.Dispatch<React.SetStateAction<number>>;
+  dataSize: number;
+}
+
+export interface showEntriesPropsType {
+  id: string;
+  paginationLength: number;
+  paginationStart: number;
+  dataSize: number;
+}
+
+export interface paginationPropsType {
+  id: string;
+  paginationLength: number;
+  paginationStart: number;
+  setPaginationStart: React.Dispatch<React.SetStateAction<number>>;
+  dataSize: number;
+}
+
+export interface pagesButtonsPropsType {
+  id: string;
+  paginationLength: number;
+  paginationStart: number;
+  setPaginationStart: React.Dispatch<React.SetStateAction<number>>;
+  dataSize: number;
 }
