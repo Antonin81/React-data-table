@@ -1,12 +1,10 @@
 import { ChangeEvent } from "react";
 import { entriesSelectPropsType } from "../../../common/utils/types";
+import { usePagination } from "../../../common/contexts/paginationContext";
 
-function EntriesSelect({
-  id,
-  setPaginationLength,
-  setPaginationStart,
-}: entriesSelectPropsType) {
+function EntriesSelect({ id }: entriesSelectPropsType) {
   function handleSelectChange(e: ChangeEvent) {
+    const { setPaginationLength, setPaginationStart } = usePagination();
     setPaginationStart(0);
     setPaginationLength(
       parseInt((e.currentTarget as HTMLInputElement).value, 10)

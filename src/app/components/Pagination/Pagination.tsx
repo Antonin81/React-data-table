@@ -1,31 +1,45 @@
+import { usePagination } from "../../../common/contexts/paginationContext";
 import { paginationPropsType } from "../../../common/utils/types";
 import PagesButtons from "../PagesButtons/PagesButtons";
 
-function Pagination({
-  id,
-  paginationLength,
-  paginationStart,
-  setPaginationStart,
-  dataSize,
-}: paginationPropsType) {
+function Pagination({ id, dataSize }: paginationPropsType) {
+  const { paginationStart, setPaginationStart, paginationLength } =
+    usePagination();
+
+  function previousPage() {
+    if (paginationStart !== 0) {
+      setPaginationStart(paginationStart - paginationLength);
+    }
+  }
+  function nextPage() {
+    if (paginationStart + paginationLength < dataSize) {
+      setPaginationStart(paginationStart + paginationLength);
+    }
+  }
+
+  const disablingControlStart = () => {
+    return paginationStart === 0 ? " disabled" : "";
+  };
+
+  const disablingControlEnd = () => {
+    return paginationStart + paginationLength >= dataSize ? " disabled" : "";
+  };
+
   return (
     <div>
-      <a
+      <button
         id={id + "_previous"}
-        className={
-          "paginate_button previous" +
-          (paginationStart === 0 ? " disabled" : "")
-        }
-        tabIndex={paginationStart === 0 ? -1 : 0}
+        className={"paginate_button previous" + disablingControlStart()}
         onClick={() => {
-          if (paginationStart !== 0) {
-            setPaginationStart(paginationStart - paginationLength);
-          }
+          previousPage();
         }}
+        {...(disablingControlStart() && {
+          disabled: true,
+        })}
         aria-controls={id}
       >
         Previous
-      </a>
+      </button>
       <PagesButtons
         id={id}
         paginationLength={paginationLength}
@@ -33,22 +47,19 @@ function Pagination({
         setPaginationStart={setPaginationStart}
         dataSize={dataSize}
       />
-      <a
+      <button
         id={id + "_next"}
-        className={
-          "paginate_button next" +
-          (paginationStart + paginationLength >= dataSize ? " disabled" : "")
-        }
-        tabIndex={paginationStart + paginationLength >= dataSize ? -1 : 0}
+        className={"paginate_button next" + disablingControlEnd()}
         onClick={() => {
-          if (paginationStart + paginationLength < dataSize) {
-            setPaginationStart(paginationStart + paginationLength);
-          }
+          nextPage();
         }}
+        {...(disablingControlEnd() && {
+          disabled: true,
+        })}
         aria-controls={id}
       >
         Next
-      </a>
+      </button>
     </div>
   );
 }

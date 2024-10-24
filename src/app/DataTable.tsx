@@ -6,36 +6,26 @@ import {
   dataTest,
   headings,
 } from "../common/utils/dataTest";
-import { useState } from "react";
+import { PaginationProvider } from "../common/contexts/paginationContext";
 
 function DataTable() {
-  const [paginationLength, setPaginationLength] = useState<number>(10);
-  const [paginationStart, setPaginationStart] = useState<number>(0);
   const dataSize = dataTest.length;
 
   return (
-    <div id={attributesTestAll.id! + "_wrapper"} className="dataTables_wrapper">
-      <TopSection
-        id={attributesTestAll.id!}
-        setPaginationLength={setPaginationLength}
-        setPaginationStart={setPaginationStart}
-      />
-      <Table
-        data={dataTest}
-        attributes={attributesTestAll}
-        headings={headings}
-        paginationLength={paginationLength}
-        paginationStart={paginationStart}
-        setPaginationStart={setPaginationStart}
-      />
-      <BottomSection
-        id={attributesTestAll.id!}
-        paginationLength={paginationLength}
-        paginationStart={paginationStart}
-        setPaginationStart={setPaginationStart}
-        dataSize={dataSize}
-      />
-    </div>
+    <PaginationProvider>
+      <div
+        id={attributesTestAll.id! + "_wrapper"}
+        className="dataTables_wrapper"
+      >
+        <TopSection id={attributesTestAll.id!} />
+        <Table
+          data={dataTest}
+          attributes={attributesTestAll}
+          headings={headings}
+        />
+        <BottomSection id={attributesTestAll.id!} dataSize={dataSize} />
+      </div>
+    </PaginationProvider>
   );
 }
 

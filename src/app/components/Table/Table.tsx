@@ -1,23 +1,17 @@
 import { useEffect, useState } from "react";
-import { propsType, sortType } from "../../../common/utils/types";
+import { propsType } from "../../../common/utils/types";
 import Thead from "../Thead/Thead";
 import Tbody from "../Tbody/Tbody";
 import { testDataOrder } from "../../../common/helpers/functions";
+import { useSort } from "../../../common/contexts/sortContext";
+import { usePagination } from "../../../common/contexts/paginationContext";
 
-function Table({
-  data,
-  attributes,
-  headings,
-  paginationLength,
-  paginationStart,
-  setPaginationStart,
-}: propsType) {
-  const [sort, setSort] = useState<sortType>({
-    column: undefined,
-    sortType: undefined,
-  });
-
+function Table({ data, attributes, headings }: propsType) {
   const [dataToShow, setDataToShow] = useState<Record<string, any>[]>(data);
+
+  const { sort } = useSort();
+  const { paginationStart, paginationLength, setPaginationStart } =
+    usePagination();
 
   useEffect(() => {
     reorderData();
@@ -48,19 +42,14 @@ function Table({
         style: attributes.style,
       })}
     >
-      <Thead
-        headings={headings}
-        attributes={attributes}
-        sort={sort}
-        setSort={setSort}
-        setPaginationStart={setPaginationStart}
-      />
+      <Thead headings={headings} attributes={attributes} />
       <Tbody
-        data={dataToShow}
+        data={dataToShow.slice(
+          paginationStart,
+          paginationStart + paginationLength
+        )}
         headings={headings}
         column={sort.column!}
-        paginationLength={paginationLength}
-        paginationStart={paginationStart}
       />
     </table>
   );

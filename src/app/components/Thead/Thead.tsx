@@ -1,12 +1,12 @@
+import { usePagination } from "../../../common/contexts/paginationContext";
+import { useSort } from "../../../common/contexts/sortContext";
 import { tableHeading, theadPropsType } from "../../../common/utils/types";
 
-function Thead({
-  headings,
-  attributes,
-  sort,
-  setSort,
-  setPaginationStart,
-}: theadPropsType) {
+function Thead({ headings, attributes }: theadPropsType) {
+  const { sort, setSort } = useSort();
+
+  const { setPaginationStart } = usePagination();
+
   function theadThClickHandler(heading: tableHeading) {
     setPaginationStart(0);
     if (sort.column === heading.data) {
@@ -20,34 +20,42 @@ function Thead({
     }
   }
 
+  const headingSortClass = (heading: tableHeading) => {
+    return heading.data === sort.column
+      ? sort.sortType === "ASC"
+        ? "sorting_asc"
+        : "sorting_desc"
+      : "sorting";
+  };
+
+  const headingAriaLabel = (heading: tableHeading) => {
+    return heading.data === sort.column
+      ? sort.sortType === "ASC"
+        ? heading.title + ": activate to sort column descending"
+        : heading.title + ": activate to sort column ascending"
+      : heading.title + ": activate to sort column ascending";
+  };
+
+  function handleKeyUp(e: React.KeyboardEvent<HTMLTableHeaderCellElement>) {
+    if (e.key === "Enter") {
+      (e.currentTarget! as HTMLElement).click();
+    }
+  }
+
   return (
     <thead>
       <tr role="row">
         {headings.map((heading) => {
           return (
             <th
-              className={
-                heading.data === sort.column
-                  ? sort.sortType === "ASC"
-                    ? "sorting_asc"
-                    : "sorting_desc"
-                  : "sorting"
-              }
+              className={headingSortClass(heading)}
               tabIndex={0}
               aria-controls={attributes.id}
-              aria-label={
-                heading.data === sort.column
-                  ? sort.sortType === "ASC"
-                    ? heading.title + ": activate to sort column descending"
-                    : heading.title + ": activate to sort column ascending"
-                  : heading.title + ": activate to sort column ascending"
-              }
+              aria-label={headingAriaLabel(heading)}
               key={heading.title}
               onClick={() => theadThClickHandler(heading)}
               onKeyUp={(e) => {
-                if (e.key === "Enter") {
-                  e.currentTarget.click();
-                }
+                handleKeyUp(e);
               }}
             >
               {heading.title}

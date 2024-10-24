@@ -12,6 +12,9 @@
     border: 1px solid transparent;
     border-radius: 2px;
     user-select: none;
+    margin: 0;
+    background-color: transparent;
+    font-size: 0.85rem;
     &:not(.disabled) {
       &:hover {
         color: white !important;
