@@ -3,14 +3,11 @@ import {
   pageButtonPropsType,
   pagesButtonsPropsType,
 } from "../../../common/utils/types";
+import { usePagination } from "../../../common/contexts/paginationContext";
 
-function PagesButtons({
-  id,
-  paginationLength,
-  paginationStart,
-  setPaginationStart,
-  dataSize,
-}: pagesButtonsPropsType) {
+function PagesButtons({ id, dataSize }: pagesButtonsPropsType) {
+  const { paginationStart, paginationLength, setPaginationStart } =
+    usePagination();
   const floatSectionsNumber = dataSize / paginationLength;
   const sectionsNumber = Math.trunc(floatSectionsNumber);
   const pagesNumber =

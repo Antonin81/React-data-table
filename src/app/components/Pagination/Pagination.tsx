@@ -40,13 +40,7 @@ function Pagination({ id, dataSize }: paginationPropsType) {
       >
         Previous
       </button>
-      <PagesButtons
-        id={id}
-        paginationLength={paginationLength}
-        paginationStart={paginationStart}
-        setPaginationStart={setPaginationStart}
-        dataSize={dataSize}
-      />
+      <PagesButtons id={id} dataSize={dataSize} />
       <button
         id={id + "_next"}
         className={"paginate_button next" + disablingControlEnd()}

@@ -66,9 +66,6 @@ export interface paginationPropsType {
 
 export interface pagesButtonsPropsType {
   id: string;
-  paginationLength: number;
-  paginationStart: number;
-  setPaginationStart: React.Dispatch<React.SetStateAction<number>>;
   dataSize: number;
 }
 
