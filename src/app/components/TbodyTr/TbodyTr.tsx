@@ -1,9 +1,7 @@
 import { tableHeading, tbodyTrPropsType } from "../../../common/utils/types";
 
 function TbodyTr({ row, parity, headings, column }: tbodyTrPropsType) {
-  const parityControl = () => {
-    return parity ? "even" : "odd";
-  };
+  const parityControl = parity ? "even" : "odd";
 
   const rowExistenceControl = (heading: tableHeading) => {
     return row[heading.data] !== undefined
@@ -12,7 +10,7 @@ function TbodyTr({ row, parity, headings, column }: tbodyTrPropsType) {
   };
 
   return (
-    <tr role="row" className={parityControl()}>
+    <tr role="row" className={parityControl}>
       {headings.map((heading, i) => (
         <td
           key={row[heading.data] + "-i" + i}

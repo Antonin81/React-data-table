@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   pageButtonPropsType,
   pagesButtonsPropsType,
@@ -8,19 +8,25 @@ import { usePagination } from "../../../common/contexts/paginationContext";
 function PagesButtons({ id, dataSize }: pagesButtonsPropsType) {
   const { paginationStart, paginationLength, setPaginationStart } =
     usePagination();
-  const floatSectionsNumber = dataSize / paginationLength;
-  const sectionsNumber = Math.trunc(floatSectionsNumber);
-  const pagesNumber =
-    sectionsNumber < floatSectionsNumber ? sectionsNumber + 1 : sectionsNumber;
-  const currentPageNumber = paginationStart / 10 + 1;
-  let array = Array.from({ length: pagesNumber }, (_, i) => i);
+
+  const currentPageNumber = paginationStart / paginationLength + 1;
+
+  const pagesNumber = useMemo(() => {
+    const floatSectionsNumber = dataSize / paginationLength;
+    const sectionsNumber = Math.trunc(floatSectionsNumber);
+    return sectionsNumber < floatSectionsNumber
+      ? sectionsNumber + 1
+      : sectionsNumber;
+  }, [dataSize, paginationLength]);
+
+  const array = useMemo(
+    () => Array.from({ length: pagesNumber }, (_, i) => i),
+    [pagesNumber]
+  );
+
   const [displayMode, setDisplayMode] = useState<
     "all" | "start" | "end" | "mid"
   >("all");
-
-  useEffect(() => {
-    detects();
-  }, [paginationStart, paginationLength]);
 
   function PageButton({ i }: pageButtonPropsType) {
     function pageButtonHandleClick(i: number) {
@@ -44,20 +50,6 @@ function PagesButtons({ id, dataSize }: pagesButtonsPropsType) {
     );
   }
 
-  function detects() {
-    if (pagesNumber <= 6) {
-      setDisplayMode("all");
-    } else {
-      if ((paginationStart - 1) / 10 <= 3) {
-        setDisplayMode("start");
-      } else if ((paginationStart - 1) / 10 >= pagesNumber - 1 - 4) {
-        setDisplayMode("end");
-      } else {
-        setDisplayMode("mid");
-      }
-    }
-  }
-
   const displayButtonStartMode = (i: number) => {
     if (i === pagesNumber - 1 || i <= 4) {
       return <PageButton key={i} i={i} />;
@@ -70,12 +62,11 @@ function PagesButtons({ id, dataSize }: pagesButtonsPropsType) {
       );
     }
   };
-
   const displayButtonEndMode = (i: number) => {
-    if (i >= pagesNumber - 1 - 4 || i === 0) {
+    if (i >= pagesNumber - 5 || i === 0) {
       return <PageButton key={i} i={i} />;
     }
-    if (i === pagesNumber - 1 - 5) {
+    if (i === pagesNumber - 6) {
       return (
         <span key={i} className="ellipsis">
           …
@@ -102,6 +93,20 @@ function PagesButtons({ id, dataSize }: pagesButtonsPropsType) {
       );
     }
   };
+
+  useEffect(() => {
+    if (pagesNumber <= 6) {
+      setDisplayMode("all");
+    } else {
+      if (currentPageNumber <= 4) {
+        setDisplayMode("start");
+      } else if (currentPageNumber >= pagesNumber - 3) {
+        setDisplayMode("end");
+      } else {
+        setDisplayMode("mid");
+      }
+    }
+  }, [paginationStart, paginationLength, pagesNumber, currentPageNumber]);
 
   if (displayMode === "all") {
     return (

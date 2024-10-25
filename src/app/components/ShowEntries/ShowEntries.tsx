@@ -4,11 +4,10 @@ import { showEntriesPropsType } from "../../../common/utils/types";
 function ShowEntries({ id, dataSize }: showEntriesPropsType) {
   const { paginationStart, paginationLength } = usePagination();
 
-  const maxToShow = () => {
-    return dataSize < paginationStart + paginationLength
+  const maxToShow =
+    dataSize < paginationStart + paginationLength
       ? dataSize
       : paginationStart + paginationLength;
-  };
 
   const paginationStartingItem = paginationStart + 1;
 
@@ -19,7 +18,7 @@ function ShowEntries({ id, dataSize }: showEntriesPropsType) {
       aria-live="polite"
       id={id + "_info"}
     >
-      Showing {paginationStartingItem} to {maxToShow()} of {dataSize} entries
+      Showing {paginationStartingItem} to {maxToShow} of {dataSize} entries
     </p>
   );
 }

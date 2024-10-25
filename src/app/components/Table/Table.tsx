@@ -10,8 +10,7 @@ function Table({ data, attributes, headings }: propsType) {
   const [dataToShow, setDataToShow] = useState<Record<string, any>[]>(data);
 
   const { sort } = useSort();
-  const { paginationStart, paginationLength, setPaginationStart } =
-    usePagination();
+  const { paginationStart, paginationLength } = usePagination();
 
   useEffect(() => {
     reorderData();
