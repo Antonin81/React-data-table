@@ -155,10 +155,23 @@
   padding: 0 1em;
 }
 
-.dataTables_wrapper .bottom-section {
+.dataTables_wrapper .data-table-bottom-section {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.dataTables_wrapper .data-table-top-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dataTables_wrapper .data-table-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  color: #333;
 }
 
 /*# sourceMappingURL=index.css.map */

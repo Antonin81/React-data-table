@@ -85,7 +85,16 @@ export interface paginationContextType {
   setPaginationStart: React.Dispatch<React.SetStateAction<number>>;
 }
 
+export interface searchContextType {
+  word: string;
+  setWord: React.Dispatch<React.SetStateAction<string>>;
+}
+
 export interface displayButtonsPropsType {
   array: number[];
   displayMode: string;
+}
+
+export interface searchBarPropsType {
+  id: string;
 }
