@@ -31,9 +31,7 @@ function Pagination({ id, dataSize }: paginationPropsType) {
       <button
         id={id + "_previous"}
         className={"paginate_button previous" + disablingControlStart}
-        onClick={() => {
-          previousPage();
-        }}
+        onClick={previousPage}
         {...(disablingControlStart && {
           disabled: true,
         })}
@@ -45,9 +43,7 @@ function Pagination({ id, dataSize }: paginationPropsType) {
       <button
         id={id + "_next"}
         className={"paginate_button next" + disablingControlEnd}
-        onClick={() => {
-          nextPage();
-        }}
+        onClick={nextPage}
         {...(disablingControlEnd && {
           disabled: true,
         })}

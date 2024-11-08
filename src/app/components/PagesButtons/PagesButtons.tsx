@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import {
+  displayButtonsPropsType,
   pageButtonPropsType,
   pagesButtonsPropsType,
 } from "../../../common/utils/types";
@@ -24,12 +25,17 @@ function PagesButtons({ id, dataSize }: pagesButtonsPropsType) {
     [pagesNumber]
   );
 
-  const [displayMode, setDisplayMode] = useState<
-    "all" | "start" | "end" | "mid"
-  >("all");
+  const DISPLAY_STATES = {
+    all: "all",
+    start: "start",
+    end: "end",
+    mid: "mid",
+  };
+
+  const [displayMode, setDisplayMode] = useState<string>(DISPLAY_STATES.all);
 
   function PageButton({ i }: pageButtonPropsType) {
-    function pageButtonHandleClick(i: number) {
+    function pageButtonHandleClick(e: React.MouseEvent<HTMLButtonElement>) {
       setPaginationStart(i * paginationLength);
     }
     return (
@@ -40,9 +46,7 @@ function PagesButtons({ id, dataSize }: pagesButtonsPropsType) {
         }
         aria-controls={id}
         tabIndex={0}
-        onClick={() => {
-          pageButtonHandleClick(i);
-        }}
+        onClick={pageButtonHandleClick}
         key={"page-button-" + i}
       >
         {i + 1}
@@ -50,80 +54,74 @@ function PagesButtons({ id, dataSize }: pagesButtonsPropsType) {
     );
   }
 
-  const displayButtonStartMode = (i: number) => {
-    if (i === pagesNumber - 1 || i <= 4) {
-      return <PageButton key={i} i={i} />;
-    }
-    if (i === 5) {
-      return (
-        <span key={i} className="ellipsis">
-          …
-        </span>
-      );
-    }
-  };
-  const displayButtonEndMode = (i: number) => {
-    if (i >= pagesNumber - 5 || i === 0) {
-      return <PageButton key={i} i={i} />;
-    }
-    if (i === pagesNumber - 6) {
-      return (
-        <span key={i} className="ellipsis">
-          …
-        </span>
-      );
-    }
-  };
-
-  const displayButtonMidMode = (i: number) => {
-    if (
-      i === 0 ||
-      i === pagesNumber - 1 ||
-      i === currentPageNumber - 2 ||
-      i === currentPageNumber - 1 ||
-      i === currentPageNumber
-    ) {
-      return <PageButton key={i} i={i} />;
-    }
-    if (i === 1 || i === pagesNumber - 2) {
-      return (
-        <span key={i} className="ellipsis">
-          …
-        </span>
-      );
-    }
-  };
-
   useEffect(() => {
     if (pagesNumber <= 6) {
-      setDisplayMode("all");
+      setDisplayMode(DISPLAY_STATES.all);
     } else {
       if (currentPageNumber <= 4) {
-        setDisplayMode("start");
+        setDisplayMode(DISPLAY_STATES.start);
       } else if (currentPageNumber >= pagesNumber - 3) {
-        setDisplayMode("end");
+        setDisplayMode(DISPLAY_STATES.end);
       } else {
-        setDisplayMode("mid");
+        setDisplayMode(DISPLAY_STATES.mid);
       }
     }
   }, [paginationStart, paginationLength, pagesNumber, currentPageNumber]);
 
-  if (displayMode === "all") {
+  function DisplayButtons({ array, displayMode }: displayButtonsPropsType) {
+    let buttonsCondition: (i: number) => boolean;
+    let ellipsisCondition: (i: number) => boolean;
+
+    const isFirstButton = (i: number) => i === 0;
+    const isLastButton = (i: number) => i === pagesNumber - 1;
+    const isOneOfTheFourFirsts = (i: number) => i <= 4;
+    const isTheFifth = (i: number) => i === 5;
+    const isOneOfTheFourLasts = (i: number) => i >= pagesNumber - 5;
+    const isTheFifthLast = (i: number) => i === pagesNumber - 6;
+    const isTheSecond = (i: number) => i === 1;
+    const isTheSecondLast = (i: number) => i === pagesNumber - 2;
+    const isAroundTheSelectedOne = (i: number) =>
+      i === currentPageNumber - 2 ||
+      i === currentPageNumber - 1 ||
+      i === currentPageNumber;
+
+    if (displayMode === DISPLAY_STATES.all) {
+      buttonsCondition = (i: number) => true;
+      ellipsisCondition = (i: number) => false;
+    }
+    if (displayMode === DISPLAY_STATES.start) {
+      buttonsCondition = (i: number) =>
+        isLastButton(i) || isOneOfTheFourFirsts(i);
+      ellipsisCondition = (i: number) => isTheFifth(i);
+    }
+    if (displayMode === DISPLAY_STATES.end) {
+      buttonsCondition = (i: number) =>
+        isOneOfTheFourLasts(i) || isFirstButton(i);
+      ellipsisCondition = (i: number) => isTheFifthLast(i);
+    }
+    if (displayMode === DISPLAY_STATES.mid) {
+      buttonsCondition = (i: number) =>
+        isFirstButton(i) || isLastButton(i) || isAroundTheSelectedOne(i);
+      ellipsisCondition = (i: number) => isTheSecond(i) || isTheSecondLast(i);
+    }
     return (
       <span>
-        {array.map((i) => (
-          <PageButton key={i} i={i} />
-        ))}
+        {array.map((i) => {
+          if (buttonsCondition(i)) {
+            return <PageButton key={i} i={i} />;
+          }
+          if (ellipsisCondition(i)) {
+            return (
+              <span key={i} className="ellipsis">
+                …
+              </span>
+            );
+          }
+        })}
       </span>
     );
   }
-  if (displayMode === "start") {
-    return <span>{array.map((i) => displayButtonStartMode(i))}</span>;
-  }
-  if (displayMode === "end") {
-    return <span>{array.map((i) => displayButtonEndMode(i))}</span>;
-  }
 
-  return <span>{array.map((i) => displayButtonMidMode(i))}</span>;
+  return <DisplayButtons array={array} displayMode={displayMode} />;
 }
 export default PagesButtons;

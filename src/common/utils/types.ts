@@ -84,3 +84,8 @@ export interface paginationContextType {
   setPaginationLength: React.Dispatch<React.SetStateAction<number>>;
   setPaginationStart: React.Dispatch<React.SetStateAction<number>>;
 }
+
+export interface displayButtonsPropsType {
+  array: number[];
+  displayMode: string;
+}
