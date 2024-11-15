@@ -35,7 +35,7 @@ function PagesButtons({ id, dataSize }: pagesButtonsPropsType) {
   const [displayMode, setDisplayMode] = useState<string>(DISPLAY_STATES.all);
 
   function PageButton({ i }: pageButtonPropsType) {
-    function pageButtonHandleClick(e: React.MouseEvent<HTMLButtonElement>) {
+    function pageButtonHandleClick() {
       setPaginationStart(i * paginationLength);
     }
     return (

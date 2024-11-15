@@ -90,6 +90,11 @@ export interface searchContextType {
   setWord: React.Dispatch<React.SetStateAction<string>>;
 }
 
+export interface dataToShowContextType {
+  dataToShow: Record<string, any>[];
+  setDataToShow: React.Dispatch<React.SetStateAction<Record<string, any>[]>>;
+}
+
 export interface displayButtonsPropsType {
   array: number[];
   displayMode: string;

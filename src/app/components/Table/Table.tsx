@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { propsType } from "../../../common/utils/types";
 import Thead from "../Thead/Thead";
 import Tbody from "../Tbody/Tbody";
@@ -6,12 +6,13 @@ import { testDataOrder } from "../../../common/helpers/functions";
 import { useSort } from "../../../common/contexts/sortContext";
 import { usePagination } from "../../../common/contexts/paginationContext";
 import { useSearch } from "../../../common/contexts/searchContext";
+import { useDataToShow } from "../../../common/contexts/dataToShowContext";
 
 function Table({ data, attributes, headings }: propsType) {
-  const [dataToShow, setDataToShow] = useState<Record<string, any>[]>(data);
-
+  const { dataToShow, setDataToShow } = useDataToShow();
   const { sort } = useSort();
-  const { paginationStart, paginationLength } = usePagination();
+  const { paginationStart, paginationLength, setPaginationStart } =
+    usePagination();
   const { word } = useSearch();
 
   useEffect(() => {
@@ -21,6 +22,10 @@ function Table({ data, attributes, headings }: propsType) {
       reorderData(sortNeededData());
     }
   }, [sort, word]);
+
+  useEffect(() => {
+    setPaginationStart(0);
+  }, [word]);
 
   function reorderData(sortedData: Record<string, any>[]) {
     if (sort.column) {
