@@ -54,9 +54,7 @@ function Thead({ headings, attributes }: theadPropsType) {
               aria-label={headingAriaLabel(heading)}
               key={heading.title}
               onClick={() => theadThClickHandler(heading)}
-              onKeyUp={(e) => {
-                handleKeyUp(e);
-              }}
+              onKeyUp={handleKeyUp}
             >
               {heading.title}
             </th>
