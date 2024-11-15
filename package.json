@@ -1,7 +1,7 @@
 {
-  "name": "react-data-table",
+  "name": "@antonin-oc/react-data-table",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,6 +9,10 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "sass": "sass --watch ./src/app/sass/main.scss:./src/app/index.css --style expanded"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Antonin81/React-data-table"
   },
   "dependencies": {
     "react": "^18.3.1",
