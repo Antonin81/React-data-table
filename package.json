@@ -1,8 +1,11 @@
 {
   "name": "@antonin-oc/react-data-table",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.1.11",
   "type": "module",
+  "main": "dist/react-data-table.umd.js",
+  "module": "dist/react-data-table.es.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -18,9 +21,11 @@
     "url": "git+https://github.com/Antonin81/React-data-table.git"
   },
   "dependencies": {
+    "@types/node": "^22.9.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sass": "^1.78.0"
+    "sass": "^1.78.0",
+    "vite-plugin-dts": "^4.3.0"
   },
   "files": [
     "./dist"
@@ -37,5 +42,13 @@
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/react-data-table.es.js",
+      "require": "./dist/react-data-table.umd.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": "./dist/style.css"
   }
 }

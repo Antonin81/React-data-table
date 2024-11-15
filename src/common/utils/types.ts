@@ -51,7 +51,6 @@ export interface entriesSelectPropsType {
 
 export interface bottomSectionPropsType {
   id: string;
-  dataSize: number;
 }
 
 export interface showEntriesPropsType {
