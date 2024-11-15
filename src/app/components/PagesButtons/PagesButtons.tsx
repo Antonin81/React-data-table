@@ -86,8 +86,8 @@ function PagesButtons({ id, dataSize }: pagesButtonsPropsType) {
       i === currentPageNumber;
 
     if (displayMode === DISPLAY_STATES.all) {
-      buttonsCondition = (i: number) => true;
-      ellipsisCondition = (i: number) => false;
+      buttonsCondition = () => true;
+      ellipsisCondition = () => false;
     }
     if (displayMode === DISPLAY_STATES.start) {
       buttonsCondition = (i: number) =>
