@@ -1,0 +1,36 @@
+name: Build and Publish
+
+on:
+  push:
+    branches:
+      - main # Déclenche uniquement pour les pushes sur `main`
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Étape 1 : Récupérer le code source
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Étape 2 : Configurer Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.17.0
+          cache: 'npm' # Cache les dépendances pour des builds plus rapides
+
+      # Étape 3 : Installer les dépendances nécessaires
+      - name: Install dependencies
+        run: npm ci # `ci` est plus rapide et fiable pour les CI/CD que `install`
+
+      # Étape 4 : Build du projet
+      - name: Build project
+        run: npm run build
+
+      # Étape 5 : Publier sur npm
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
