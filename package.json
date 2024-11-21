@@ -1,7 +1,7 @@
 {
   "name": "@antonin-oc/react-data-table",
   "private": false,
-  "version": "0.1.11",
+  "version": "0.1.13",
   "type": "module",
   "main": "dist/react-data-table.umd.js",
   "module": "dist/react-data-table.es.js",
@@ -41,7 +41,8 @@
     "globals": "^15.9.0",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "vite-plugin-css-injected-by-js": "^3.5.2"
   },
   "exports": {
     ".": {
