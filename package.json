@@ -1,7 +1,7 @@
 {
   "name": "@antonin-oc/react-data-table",
   "private": false,
-  "version": "0.1.17",
+  "version": "0.1.18",
   "type": "module",
   "main": "dist/react-data-table.umd.js",
   "module": "dist/react-data-table.es.js",
