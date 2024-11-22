@@ -72,7 +72,7 @@
   background-color: #f9f9f9;
 }
 .dataTables_wrapper tbody tr.odd:hover {
-  background-color: #f6f6f6;
+  background-color: blue;
 }
 .dataTables_wrapper tbody tr.odd:hover td.sorting_1 {
   background-color: #eaeaea;
