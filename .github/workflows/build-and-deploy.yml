@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 20.17.0
           cache: "npm" # Cache les dépendances pour des builds plus rapides
-          # registry-url: "https://registry.npmjs.org"
+          registry-url: "https://registry.npmjs.org"
 
       # Étape 3: Mettre à jour la version dans package.json
       - name: Update package.json version
