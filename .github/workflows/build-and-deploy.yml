@@ -22,13 +22,13 @@ jobs:
           cache: "npm" # Cache les dépendances pour des builds plus rapides
           registry-url: "https://registry.npmjs.org"
 
-      # # Étape 3: Mettre à jour la version dans package.json
-      # - name: Update package.json version
-      #   id: update-version
-      #   run: |
-      #     $TAG_NAME = $env:GITHUB_REF -replace '^refs/tags/', ''
-      #     Write-Host "Release tag: $TAG_NAME"
-      #     npm version $TAG_NAME --no-git-tag-version
+      # Étape 3: Mettre à jour la version dans package.json
+      - name: Update package.json version
+        id: update-version
+        run: |
+          $TAG_NAME = $env:GITHUB_REF -replace '^refs/tags/', ''
+          Write-Host "Release tag: $TAG_NAME"
+          npm version $TAG_NAME --no-git-tag-version
 
       # Étape 4 : Installer les dépendances nécessaires
       - name: Install dependencies
