@@ -25,7 +25,7 @@ jobs:
       - name: Update package.json version
         id: update-version
         run: |
-          TAG_NAME=${GITHUB_REF#refs/tags/}
+          $TAG_NAME = $GITHUB_REF -replace '^refs/tags/', ''
           echo "Release tag: $TAG_NAME"
           npm version $TAG_NAME --no-git-tag-version
         env:
