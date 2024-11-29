@@ -22,13 +22,13 @@ jobs:
           cache: "npm" # Cache les dépendances pour des builds plus rapides
           registry-url: "https://registry.npmjs.org"
 
-      # Étape 3: Mettre à jour la version dans package.json
-      - name: Update package.json version
-        id: update-version
-        run: |
-          $TAG_NAME = $env:GITHUB_REF -replace '^refs/tags/', ''
-          Write-Host "Release tag: $TAG_NAME"
-          npm version $TAG_NAME --no-git-tag-version
+      # # Étape 3: Mettre à jour la version dans package.json
+      # - name: Update package.json version
+      #   id: update-version
+      #   run: |
+      #     $TAG_NAME = $env:GITHUB_REF -replace '^refs/tags/', ''
+      #     Write-Host "Release tag: $TAG_NAME"
+      #     npm version $TAG_NAME --no-git-tag-version
 
       # Étape 4 : Installer les dépendances nécessaires
       - name: Install dependencies
@@ -37,9 +37,6 @@ jobs:
       # Étape 5 : Créer un fichier .npmrc avec le token npm
       - name: Authenticate to npm
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > $HOME/.npmrc
-
-      # - name: test
-      #   run: npm whoami
 
       # Étape 7 : Build du projet
       - name: Build project
