@@ -21,6 +21,16 @@ jobs:
           node-version: 20.17.0
           cache: "npm" # Cache les dépendances pour des builds plus rapides
 
+      # Étape 3: Mettre à jour la version dans package.json
+      - name: Update package.json version
+        id: update-version
+        run: |
+          TAG_NAME=${GITHUB_REF#refs/tags/}
+          echo "Release tag: $TAG_NAME"
+          npm version $TAG_NAME --no-git-tag-version
+        env:
+          GITHUB_REF: ${{ github.ref }} # Contains the tag name from the release event
+
       # Étape 3 : Installer les dépendances nécessaires
       - name: Install dependencies
         run: npm ci # `ci` est plus rapide et fiable pour les CI/CD que `install`
