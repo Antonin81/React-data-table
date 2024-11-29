@@ -38,8 +38,8 @@ jobs:
       - name: Authenticate to npm
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > $HOME/.npmrc
 
-      - name: test
-        run: npm whoami
+      # - name: test
+      #   run: npm whoami
 
       # Étape 7 : Build du projet
       - name: Build project
