@@ -35,7 +35,9 @@ jobs:
 
       # Étape 5 : Créer un fichier .npmrc avec le token npm
       - name: Authenticate to npm
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > $HOME/.npmrc
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > $HOME/.npmrc
+          sleep 60
 
       # Étape 6 : Vérifier l'authentification npm
       - name: Check npm authentication
