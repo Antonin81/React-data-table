@@ -44,8 +44,8 @@ jobs:
       - name: Authenticate to npm
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
-      - name: Check npmrc file
-        run: cat ~/.npmrc
+      - name: Check npm authentication
+        run: npm whoami
 
       # Étape 7 : Publier sur npm
       - name: Publish to npm
