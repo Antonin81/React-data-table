@@ -1,9 +1,9 @@
 name: Build and Publish
 
 on:
-  push:
-    branches:
-      - main  # Déclenche uniquement pour les pushes sur `main`
+  release:
+    types:
+      - published # Déclenche uniquement quand une release est publiée
 
 jobs:
   build-and-publish:
@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20.17.0
-          cache: 'npm' # Cache les dépendances pour des builds plus rapides
+          cache: "npm" # Cache les dépendances pour des builds plus rapides
 
       # Étape 3 : Installer les dépendances nécessaires
       - name: Install dependencies
@@ -32,10 +32,9 @@ jobs:
       # Étape 5 : Authentifier npm
       - name: Authenticate to npm
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-        
+
       # Étape 6 : Publier sur npm
       - name: Publish to npm
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
