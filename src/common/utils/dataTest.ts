@@ -23,10 +23,16 @@ export const attributesTestNothing: TableHTMLAttributes<any> = {
 
 export const attributesTestAll: TableHTMLAttributes<any> = {
   id: "table-test-all",
-  className: "data-table",
+  className: "",
   style: {
     backgroundColor: "white",
   },
+};
+
+export const attributesTestTheme: TableHTMLAttributes<any> = {
+  id: "table-test-all",
+  className: "data-table-classic",
+  style: {},
 };
 
 export const dataTest: Record<string, any>[] = [

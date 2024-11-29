@@ -86,12 +86,9 @@ function Table({ data, attributes, headings }: propsType) {
   return (
     <table
       id={attributes.id}
-      {...(attributes.className && { className: attributes.className })}
       role="grid"
       aria-describedby={attributes.id + "_info"}
-      {...(attributes.style && {
-        style: attributes.style,
-      })}
+      className="data-table"
     >
       <Thead headings={headings} attributes={attributes} />
       <Tbody

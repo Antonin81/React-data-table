@@ -17,7 +17,13 @@ function DataTable({ attributes, data, headings }: propsType) {
           <DataToShowProvider data={dataTest}>
             <div
               id={attributes.id! + "_wrapper"}
-              className="dataTables_wrapper"
+              className={
+                `data-table_wrapper` +
+                (attributes.className ? " " + attributes.className : "")
+              }
+              {...(attributes.style && {
+                style: attributes.style,
+              })}
             >
               <TopSection id={attributes.id!} />
               <Table data={data} attributes={attributes} headings={headings} />

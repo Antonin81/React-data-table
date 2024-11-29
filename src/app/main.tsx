@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import DataTable from "./DataTable.tsx";
 import {
-  attributesTestAll,
+  attributesTestTheme,
   dataTest,
   headings,
 } from "../common/utils/dataTest";
@@ -10,7 +10,7 @@ import {
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <DataTable
-      attributes={attributesTestAll}
+      attributes={attributesTestTheme}
       data={dataTest}
       headings={headings}
     />
