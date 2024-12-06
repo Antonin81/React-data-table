@@ -14,8 +14,7 @@
     "sass": "sass --watch ./src/app/sass/main.scss:./src/app/index.css --style expanded"
   },
   "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "access": "public"
   },
   "repository": {
     "type": "git",
