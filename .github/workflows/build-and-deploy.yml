@@ -37,15 +37,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # # Étape 5 : Créer un fichier .npmrc avec le token npm
-      # - name: Authenticate to npm
-      #   run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > $HOME/.npmrc
-
-      # Étape 7 : Build du projet
+      # Étape 5 : Build du projet
       - name: Build project
         run: npm run build
 
-      # Étape 8 : Publier sur npm
+      # Étape 6 : Publier sur npm
       - name: Publish to npm
         run: npm publish
         env:
