@@ -8,6 +8,10 @@ on:
 jobs:
   build-and-publish:
     runs-on: self-hosted # Utilisation d'un runner local
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
 
     steps:
       # Étape 1 : Récupérer le code source
