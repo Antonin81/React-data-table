@@ -45,3 +45,5 @@ jobs:
       # Étape 8 : Publier sur npm
       - name: Publish to npm
         run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
