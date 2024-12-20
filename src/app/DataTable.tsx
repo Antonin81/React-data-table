@@ -6,7 +6,6 @@ import { DataToShowProvider } from "../common/contexts/dataToShowContext";
 import { SortProvider } from "../common/contexts/sortContext";
 import { PaginationProvider } from "../common/contexts/paginationContext";
 import { SearchProvider } from "../common/contexts/searchContext";
-import { dataTest } from "../common/utils/dataTest";
 import "./index.css";
 
 function DataTable({ attributes, data, headings }: propsType) {
@@ -14,7 +13,7 @@ function DataTable({ attributes, data, headings }: propsType) {
     <SortProvider>
       <PaginationProvider>
         <SearchProvider>
-          <DataToShowProvider data={dataTest}>
+          <DataToShowProvider data={data}>
             <div
               id={attributes.id! + "_wrapper"}
               className={
