@@ -286,6 +286,13 @@
 .data-table_wrapper.data-table-classic .data-table-top-section .data-table-search-bar #table-test-all_search:hover {
   background-color: #edefff;
 }
+.data-table_wrapper.data-table-classic .data-table-top-section .data-table-search-bar input {
+  border-radius: 5px;
+  border: 2px solid #b1b1b1;
+}
+.data-table_wrapper.data-table-classic .data-table-top-section .data-table-search-bar input:hover {
+  background-color: #edefff;
+}
 .data-table_wrapper.data-table-classic .data-table-bottom-section .paginate_button {
   font-family: "Roboto", sans-serif;
   font-weight: bold;
