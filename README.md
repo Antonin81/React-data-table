@@ -12,7 +12,7 @@ This data table has been created for my OpenClassrooms studies. It is a pretty s
 
 - Built-in :
   - Sorting
-  - Pagination
+  - Paginator
   - Search
   - Showed data length selection
 - Themeable/Customizable
@@ -95,6 +95,13 @@ const attributes: TableHTMLAttributes<any> = {
 At the moment, one theme exists beside default one. You can use it giving the class "data-table-classic" in the className value in the attributes object.
 
 It looks like this :
+
+```
+const attributes: TableHTMLAttributes<any> = {
+  id: "data-table",
+  className: "data-table-classic"
+};
+```
 
 ## How to work on It
 
