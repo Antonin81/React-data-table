@@ -36,27 +36,19 @@ function Thead({ headings, attributes }: theadPropsType) {
       : heading.title + ": activate to sort column ascending";
   };
 
-  function handleKeyUp(e: React.KeyboardEvent<HTMLTableHeaderCellElement>) {
-    if (e.key === "Enter") {
-      (e.currentTarget! as HTMLElement).click();
-    }
-  }
-
   return (
     <thead>
-      <tr role="row">
+      <tr>
         {headings.map((heading) => {
           return (
-            <th
-              className={headingSortClass(heading)}
-              tabIndex={0}
-              aria-controls={attributes.id}
-              aria-label={headingAriaLabel(heading)}
-              key={heading.title}
-              onClick={() => theadThClickHandler(heading)}
-              onKeyUp={handleKeyUp}
-            >
-              {heading.title}
+            <th className={headingSortClass(heading)} key={heading.title}>
+              <button
+                aria-controls={attributes.id}
+                aria-label={headingAriaLabel(heading)}
+                onClick={() => theadThClickHandler(heading)}
+              >
+                {heading.title}
+              </button>
             </th>
           );
         })}

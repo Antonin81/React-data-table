@@ -16,11 +16,14 @@
       background-color: $blue;
       tr th {
         border-bottom: 2px solid $light-grey;
-        text-align: left;
-        padding: 12px 20px;
-        text-transform: uppercase;
         font-size: 14px;
         line-height: 1.5;
+        button {
+          padding: 12px 20px;
+          text-align: left;
+          text-transform: uppercase;
+          font-family: "Roboto", sans-serif;
+        }
         &::after {
           content: "";
         }

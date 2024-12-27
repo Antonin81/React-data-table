@@ -10,7 +10,7 @@ function SearchBar({ id }: searchBarPropsType) {
 
   return (
     <label htmlFor={id + "_search"} className="data-table-search-bar">
-      <p>Search : </p>
+      <span>Search : </span>
       <input
         type="search"
         id={id + "_search"}

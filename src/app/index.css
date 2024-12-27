@@ -10,12 +10,19 @@
 }
 
 .data-table_wrapper thead th {
-  cursor: pointer;
   user-select: none;
-  padding: 10px 18px;
   border-bottom: 1px solid #111;
   line-height: 1;
   position: relative;
+}
+.data-table_wrapper thead th button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  height: 100%;
+  width: 100%;
+  padding: 10px 18px;
+  font-weight: bold;
 }
 .data-table_wrapper thead th::after {
   content: "";
@@ -171,6 +178,9 @@
   gap: 0.5em;
   color: #333;
 }
+.data-table_wrapper .data-table-search-bar span {
+  margin-block: 1em;
+}
 
 .data-table_wrapper.data-table-classic {
   font-family: "Roboto", sans-serif;
@@ -186,11 +196,14 @@
 }
 .data-table_wrapper.data-table-classic .data-table thead tr th {
   border-bottom: 2px solid #e2e2e2;
-  text-align: left;
-  padding: 12px 20px;
-  text-transform: uppercase;
   font-size: 14px;
   line-height: 1.5;
+}
+.data-table_wrapper.data-table-classic .data-table thead tr th button {
+  padding: 12px 20px;
+  text-align: left;
+  text-transform: uppercase;
+  font-family: "Roboto", sans-serif;
 }
 .data-table_wrapper.data-table-classic .data-table thead tr th::after {
   content: "";

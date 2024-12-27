@@ -10,7 +10,7 @@ function TbodyTr({ row, parity, headings, column }: tbodyTrPropsType) {
   };
 
   return (
-    <tr role="row" className={parityControl}>
+    <tr className={parityControl}>
       {headings.map((heading, i) => (
         <td
           key={row[heading.data] + "-i" + i}
