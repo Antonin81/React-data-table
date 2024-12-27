@@ -48,6 +48,7 @@ function PagesButtons({ id, dataSize }: pagesButtonsPropsType) {
         tabIndex={0}
         onClick={pageButtonHandleClick}
         key={"page-button-" + i}
+        aria-label={"Shows data selection number : " + (i + 1)}
       >
         {i + 1}
       </button>

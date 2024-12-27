@@ -36,6 +36,7 @@ function Pagination({ id, dataSize }: paginationPropsType) {
           disabled: true,
         })}
         aria-controls={id}
+        aria-label="Shows the previous data selection"
       >
         Previous
       </button>
@@ -48,6 +49,7 @@ function Pagination({ id, dataSize }: paginationPropsType) {
           disabled: true,
         })}
         aria-controls={id}
+        aria-label="Shows the next data selection"
       >
         Next
       </button>
