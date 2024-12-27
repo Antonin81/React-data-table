@@ -1350,3 +1350,36 @@ export const dataTest: Record<string, any>[] = [
     testBoolean: true,
   },
 ];
+
+export const dataReadMe: Record<string, any>[] = [
+  {
+    firstName: "John",
+    lastName: "Doe",
+    age: 24,
+  },
+  {
+    firstName: "John",
+    lastName: "Smith",
+    age: 32,
+  },
+];
+
+export const headingsReadMe: tableHeading[] = [
+  {
+    title: "First name",
+    data: "firstName",
+  },
+  {
+    title: "Last name",
+    data: "lastName",
+  },
+  {
+    title: "Age",
+    data: "age",
+  },
+];
+
+export const attributesReadMe: TableHTMLAttributes<any> = {
+  id: "data-table",
+  className: "data-table-classic",
+};

@@ -48,12 +48,12 @@ Example :
 ```
 const data : Record<string, any>[] = [
   {
-    firstName : John,
-    lastName : Doe,
+    firstName : "John",
+    lastName : "Doe",
     age : 24
   },{
-    firstName : John,
-    lastName : Smith,
+    firstName : "John",
+    lastName : "Smith",
     age : 32
   }
 ]
@@ -96,12 +96,9 @@ At the moment, one theme exists beside default one. You can use it giving the cl
 
 It looks like this :
 
-```
-const attributes: TableHTMLAttributes<any> = {
-  id: "data-table",
-  className: "data-table-classic"
-};
-```
+- Basic :
+
+- Classic :
 
 ## How to work on It
 
