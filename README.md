@@ -97,8 +97,10 @@ At the moment, one theme exists beside default one. You can use it giving the cl
 It looks like this :
 
 - Basic :
+![Capture d'écran 2024-12-27 141753](https://github.com/user-attachments/assets/f889c0ca-5fd7-4ad3-93b7-c63c03b45d21)
 
 - Classic :
+![Capture d’écran 2024-12-27 141832](https://github.com/user-attachments/assets/b72784a8-e92c-41fc-8c0f-4d44a501689b)
 
 ## How to work on It
 
