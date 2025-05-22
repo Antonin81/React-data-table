@@ -144,3 +144,13 @@ You can find help to use these tools by looking at these links :
 - npm - [npm documentation](https://docs.npmjs.com).
 - Eslint - [Eslint documentation](https://eslint.org/docs/latest/).
 - Prettier - [Prettier documentation](https://prettier.io/docs/en/).
+
+## Prerequisites
+
+- **react** : ^18.3.1
+- **react-dom** : ^18.3.1
+- **sass**: ^1.78.0
+- **typescript**: ^5.5.3
+- **vite**: ^5.4.1
+- **Node.js** >= 18
+- npm ou yarn

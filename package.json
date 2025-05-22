@@ -6,6 +6,22 @@
   "main": "dist/react-data-table.umd.js",
   "module": "dist/react-data-table.es.js",
   "types": "dist/index.d.ts",
+  "description": "A customizable and accessible React-Typescript data table component with sorting, filtering, and pagination.",
+  "author": {
+    "name": "Antonin PIDET",
+    "url": "https://github.com/Antonin81"
+  },
+  "keywords": [
+    "react",
+    "data-table",
+    "table",
+    "react-component",
+    "sortable-table",
+    "pagination",
+    "typescript",
+    "accessible",
+    "grid"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
